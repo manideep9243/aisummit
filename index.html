@@ -25,6 +25,7 @@
       overflow-x: hidden;
     }
 
+    /* Header */
     header {
       position: fixed;
       top: 0; width: 100%;
@@ -67,6 +68,7 @@
     }
     .nav-links a:hover { color: var(--primary); }
 
+    /* Hero */
     .hero {
       min-height: 100vh;
       background: linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.82)), url('https://source.unsplash.com/random/1600x900/?ai,neural,network') center/cover no-repeat;
@@ -110,38 +112,7 @@
       display: block; margin: 15px auto; border-radius: 3px;
     }
 
-    /* Organizing Committee */
-    .committee-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 2rem auto;
-    }
-    .member {
-      background: #1e293b;
-      border-radius: 18px;
-      overflow: hidden;
-      transition: 0.3s;
-      border: 1px solid #334155;
-    }
-    .member:hover { transform: translateY(-10px); border-color: var(--primary); }
-    .member img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-    }
-    .member h3 {
-      color: var(--primary);
-      margin: 1rem 0 0.5rem;
-      font-size: 1.2rem;
-    }
-    .member p {
-      padding: 0 1rem 1.5rem;
-      font-size: 0.95rem;
-      color: #cbd5e1;
-    }
-
+    /* About & Takeaways */
     .about-box, .takeaways {
       background: #1e293b;
       padding: 2.5rem;
@@ -161,22 +132,92 @@
       padding: 1.8rem;
       border-radius: 15px;
       font-size: 1.1rem;
+      transition: 0.3s;
     }
 
-    .events-grid {
+    /* Organizing Committee */
+    .committee-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.8rem;
+      gap: 2rem;
+      max-width: 1200px;
       margin: 2rem auto;
+    }
+    .member {
+      background: #1e293b;
+      border-radius: 18px;
+      overflow: hidden;
+      transition: 0.3s;
+      border: 1px solid #334155;
+    }
+    .member:hover { transform: translateY(-10px); border-color: var(--primary); }
+    .member img { width: 100%; height: 260px; object-fit: cover; }
+    .member h3 { color: var(--primary); margin: 1rem 0 0.5rem; font-size: 1.2rem; }
+    .member p { padding: 0 1rem 1.5rem; font-size: 0.95rem; color: #cbd5e1; }
+
+    /* Events with Clickable Cards */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
       max-width: 1100px;
+      margin: 2rem auto;
     }
     .event-card {
       background: #1e293b;
-      padding: 2rem;
-      border-radius: 16px;
-      border: 1px solid #334155;
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      border: 2px solid #334155;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-align: center;
     }
+    .event-card:hover {
+      transform: translateY(-12px);
+      border-color: var(--primary);
+      box-shadow: 0 15px 30px rgba(0,212,255,0.2);
+    }
+    .event-card h3 { font-size: 1.6rem; color: var(--primary); margin-bottom: 1rem; }
+    .event-card p { font-size: 1.1rem; color: #cbd5e1; }
 
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      overflow-y: auto;
+      padding: 2rem;
+    }
+    .modal-content {
+      background: #1e293b;
+      margin: 5% auto;
+      padding: 2.5rem;
+      border-radius: 20px;
+      max-width: 900px;
+      position: relative;
+      border: 2px solid var(--primary);
+    }
+    .close {
+      position: absolute;
+      top: 15px; right: 25px;
+      font-size: 2.5rem;
+      color: var(--primary);
+      cursor: pointer;
+    }
+    .modal h3 {
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .modal ul { text-align: left; margin: 1.5rem 0; padding-left: 1.5rem; }
+    .modal li { margin: 0.8rem 0; font-size: 1.1rem; }
+    .modal strong { color: var(--primary); }
+
+    /* Schedule */
     .schedule-table {
       width: 100%;
       max-width: 1000px;
@@ -191,6 +232,7 @@
 
     .prize-highlight { font-size: 4.2rem; color: var(--primary); font-weight: bold; margin: 1.5rem 0; }
 
+    /* Registration */
     .register-cta {
       background: linear-gradient(135deg, #1e293b, #0f172a);
       padding: 80px 1.5rem;
@@ -223,6 +265,7 @@
       text-decoration: none;
     }
 
+    /* FAQ */
     .faq { max-width: 900px; margin: 0 auto; }
     .faq-item {
       background: #1e293b;
@@ -240,10 +283,11 @@
       align-items: center;
     }
     .faq-question::after { content: '+'; font-size: 1.8rem; color: var(--primary); }
-    .faq-item.active .faq-question::after { content: 'Minus'; }
+    .faq-item.active .faq-question::after { content: '−'; }
     .faq-answer { padding: 1.5rem; display: none; text-align: left; }
     .faq-item.active .faq-answer { display: block; }
 
+    /* Venue */
     .venue-section {
       background: #1e293b;
       padding: 3.5rem 1.5rem;
@@ -289,6 +333,8 @@
       .logo-text { font-size: 1.6rem; }
       .reg-flex { flex-direction: column; gap: 30px; }
       .qr-code img { width: 240px; height: 240px; }
+      .modal-content { margin: 10% auto; padding: 2rem; }
+      .modal h3 { font-size: 1.8rem; }
     }
     @media (max-width: 480px) {
       .hero h1 { font-size: 2.8rem; }
@@ -344,94 +390,116 @@
     </div>
   </section>
 
-  <!-- Organizing Committee Added Back -->
   <section id="committee" class="container">
     <h2>Organizing Committee</h2>
     <div class="committee-grid">
       <div class="member">
-        <img src="https://via.placeholder.com/300x260/1e293b/ffffff?text=Chief+Patron" alt="Chief Patron">
+        <img src="VC.png" alt="Chief Patron">
         <h3>Mr. Sardar Gagandeep Singh Kohli</h3>
         <p>Vice Chairman, Guru Nanak Institutions<br><strong>Chief Patron</strong></p>
       </div>
       <div class="member">
-        <img src="https://via.placeholder.com/300x260/1e293b/ffffff?text=Patron" alt="Patron">
+        <img src="MD.jpg" alt="Patron">
         <h3>Dr. H.S. Saini</h3>
         <p>Managing Director, GNI<br><strong>Patron</strong></p>
       </div>
       <div class="member">
-        <img src="https://via.placeholder.com/300x260/1e293b/ffffff?text=Chairman" alt="Chairman">
+        <img src="director.jfif" alt="Chairman">
         <h3>Dr. S. Sreenatha Reddy</h3>
         <p>Director, GNITC<br><strong>Chairman</strong></p>
       </div>
       <div class="member">
-        <img src="https://via.placeholder.com/300x260/1e293b/ffffff?text=Co-Chairman" alt="Co-Chairman">
+        <img src="ad.jfif" alt="Co-Chairman">
         <h3>Dr. Rishi Sayal</h3>
         <p>Associate Director, GNITC<br><strong>Co-Chairman</strong></p>
       </div>
       <div class="member">
-        <img src="https://via.placeholder.com/300x260/1e293b/ffffff?text=Convenor" alt="Convenor">
+        <img src="hod.jpeg" alt="Convenor">
         <h3>Dr. S. Madhu</h3>
         <p>HoD - CSM|CSO|AI&DS, GNITC<br><strong>Convenor</strong></p>
       </div>
       <div class="member">
-        <img src="https://via.placeholder.com/300x260/1e293b/ffffff?text=Coordinator" alt="Coordinator">
+        <img src="c1.png" alt="Coordinator">
         <h3>Dr. P. Pavan Kumar</h3>
         <p>Asst. Professor, AIML<br><strong>Coordinator</strong></p>
       </div>
       <div class="member">
-        <img src="https://via.placeholder.com/300x260/1e293b/ffffff?text=Coordinator" alt="Coordinator">
+        <img src="c2.jpeg" alt="Coordinator">
         <h3>Dr. A. Krishna</h3>
         <p>Asst. Professor, IoT<br><strong>Coordinator</strong></p>
       </div>
     </div>
   </section>
 
-  <!-- Rest of the sections remain exactly the same -->
   <section id="events" class="container">
     <h2>Events</h2>
     <div class="events-grid">
-      <div class="event-card"><h3>Paper Presentation</h3><p>8+2 min | IEEE Format | Max 6 pages</p></div>
-      <div class="event-card"><h3>Poster Presentation</h3><p>A1 Size | 5 min | Printed only</p></div>
-      <div class="event-card"><h3>Startup Expo</h3><p>10 min + Demo | Prototype required</p></div>
+      <div class="event-card" onclick="openModal('paper')">
+        <h3>Paper Presentation</h3>
+        <p>8+2 min | IEEE Format | Max 6 pages | Team: 1-2</p>
+        <p style="margin-top:1rem; color:var(--primary); font-weight:bold;">Click for Guidelines</p>
+      </div>
+      <div class="event-card" onclick="openModal('poster')">
+        <h3>Poster Presentation</h3>
+        <p>A1 Size (24×36") | Printed | 5 min</p>
+        <p style="margin-top:1rem; color:var(--primary); font-weight:bold;">Click for Guidelines</p>
+      </div>
+      <div class="event-card" onclick="openModal('startup')">
+        <h3>Startup Expo</h3>
+        <p>Prototype + 10 min Demo | Stall Provided</p>
+        <p style="margin-top:1rem; color:var(--primary); font-weight:bold;">Click for Guidelines</p>
+      </div>
     </div>
   </section>
+
+  <div id="guidelinesModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
+      <div id="modalBody"></div>
+    </div>
+  </div>
 
   <section id="schedule" class="container">
     <h2>Event Schedule</h2>
     <h3 style="color:var(--primary); font-size:2.2rem; margin:3rem 0 2rem;">Day 1 – 20 February 2026 (Friday)</h3>
     <table class="schedule-table">
       <tr><th>Time</th><th>Event</th><th>Venue</th></tr>
-      <tr><td>8:30 – 9:00 AM</td><td>Reporting & Registration</td><td>Registration Desk</td></tr>
-      <tr><td>9:00 – 10:00 AM</td><td>Inaugural Ceremony</td><td>Open Auditorium</td></tr>
-      <tr><td>10:15 AM – 12:30 PM</td><td>Paper & Poster Presentation</td><td>Seminar Halls / Corridor</td></tr>
-      <tr><td>12:30 – 1:30 PM</td><td>Lunch Break</td><td>Stalls</td></tr>
-      <tr><td>1:30 – 3:30 PM</td><td>Startup Expo</td><td>Expo Zone</td></tr>
-      <tr><td>4:00 – 5:00 PM</td><td>Technical Talks</td><td>Seminar Hall</td></tr>
+      <tr><td>8:30 AM – 9:00 AM</td><td>Participant Reporting & Registration</td><td>Registration Desk</td></tr>
+      <tr><td>9:00 AM – 10:00 AM</td><td>Inaugural Ceremony</td><td>Open Auditorium</td></tr>
+      <tr><td>10:15 AM – 12:30 PM</td><td>Paper Presentation</td><td>Seminar Hall / Assigned Rooms</td></tr>
+      <tr><td>10:15 AM – 12:30 PM</td><td>Poster Presentation</td><td>Exhibition Corridor / Lab Hall</td></tr>
+      <tr><td>12:30 PM – 1:30 PM</td><td>Lunch Break</td><td>Stalls</td></tr>
+      <tr><td>1:30 PM – 3:30 PM</td><td>Startup Expo</td><td>Expo Zone / Open Hall</td></tr>
+      <tr><td>3:30 PM – 4:00 PM</td><td>Break & Result Compilation</td><td>—</td></tr>
+      <tr><td>4:00 PM – 5:00 PM</td><td>Technical Talks / Expert Interaction</td><td>Seminar Hall</td></tr>
+      <tr><td>5:00 PM</td><td>End of Day 1</td><td>—</td></tr>
     </table>
 
     <h3 style="color:var(--primary); font-size:2.2rem; margin:4rem 0 2rem;">Day 2 – 21 February 2026 (Saturday)</h3>
     <table class="schedule-table">
       <tr><th>Time</th><th>Event</th><th>Venue</th></tr>
-      <tr><td>9:00 – 9:30 AM</td><td>Reporting</td><td>Registration Desk</td></tr>
-      <tr><td>9:30 AM – 12:30 PM</td><td>Final Rounds & Exhibits</td><td>Expo Zone / Corridor</td></tr>
-      <tr><td>12:30 – 1:30 PM</td><td>Lunch Break</td><td>Cafeteria</td></tr>
-      <tr><td>3:00 – 4:00 PM</td><td>Valedictory & Awards</td><td>Open Auditorium</td></tr>
-      <tr><td>4:00 – 5:00 PM</td><td>DJ & Celebration</td><td>Open Auditorium</td></tr>
+      <tr><td>9:00 AM – 9:30 AM</td><td>Reporting for Final Rounds/Exhibits</td><td>Registration Desk</td></tr>
+      <tr><td>9:30 AM – 12:30 PM</td><td>Continuation / Display of Selected Posters & Expo Models</td><td>Expo Zone / Corridor</td></tr>
+      <tr><td>12:30 PM – 1:30 PM</td><td>Lunch Break</td><td>Cafeteria</td></tr>
+      <tr><td>2:30 PM – 3:00 PM</td><td>Final Result Preparation</td><td>Seminar Hall</td></tr>
+      <tr><td>3:00 PM – 4:00 PM</td><td>Valedictory & Prize Distribution Ceremony</td><td>Open Auditorium</td></tr>
+      <tr><td>4:00 PM – 5:00 PM</td><td>DJ</td><td>Open Auditorium</td></tr>
+      <tr><td>5:00 PM</td><td>Summit Concludes</td><td>—</td></tr>
     </table>
   </section>
 
   <section class="container">
     <h2>Prizes & Awards</h2>
     <div class="prize-highlight">₹1,00,000</div>
-    <p style="font-size:1.4rem;">1st & 2nd Prize in each event • Consolation Prizes • Certificates for all</p>
+    <p style="font-size:1.4rem;">1st & 2nd Prize in each event • Consolation Prizes • Certificates for all participants</p>
   </section>
 
   <section class="register-cta" id="register">
     <h2 style="font-size:3.5rem;">Register Now</h2>
-    <p style="font-size:1.5rem; margin:2rem 0;">₹200 per Event • Only UG & PG Students</p>
+    <p style="font-size:1.5rem; margin:2rem 0;">₹200 per Event • Only UG & PG Engineering Students</p>
     <div class="reg-flex">
       <div class="qr-code">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://konfhub.com/ai-summit" alt="QR Code">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://konfhub.com/ai-summit" alt="Registration QR Code">
       </div>
       <a href="https://konfhub.com/ai-summit" target="_blank" class="reg-btn">REGISTER NOW</a>
     </div>
@@ -440,38 +508,95 @@
   <section id="faq" class="container">
     <h2>Frequently Asked Questions</h2>
     <div class="faq">
-      <div class="faq-item"><div class="faq-question">Who can participate?</div><div class="faq-answer">Only UG & PG Engineering students from any college in India.</div></div>
-      <div class="faq-item"><div class="faq-question">How to register?</div><div class="faq-answer">Scan QR or click Register → Pay ₹200 per event on KonfHub.</div></div>
-      <div class="faq-item"><div class="faq-question">Can I join multiple events?</div><div class="faq-answer">Yes! Register separately for each event.</div></div>
-      <div class="faq-item"><div class="faq-question">Is fee refundable?</div><div class="faq-answer">No, except if event is cancelled by organizers.</div></div>
-      <div class="faq-item"><div class="faq-question">What to bring?</div><div class="faq-answer">College ID, printed copies, prototype (if applicable), AI Summit T-shirt.</div></div>
-      <div class="faq-item"><div class="faq-question">Will I get certificate?</div><div class="faq-answer">Yes! Participation for all, Merit for winners.</div></div>
+      <div class="faq-item"><div class="faq-question">Who can participate in AI Summit 2026?</div><div class="faq-answer">Only UG & PG Engineering students (any year, any branch) from recognized colleges across India.</div></div>
+      <div class="faq-item"><div class="faq-question">How do I register?</div><div class="faq-answer">Scan the QR code above or click the Register button → Choose your event → Pay ₹200 per event on KonfHub.</div></div>
+      <div class="faq-item"><div class="faq-question">Can I participate in multiple events?</div><div class="faq-answer">Yes! You can register and participate in all three events by paying ₹200 per event separately.</div></div>
+      <div class="faq-item"><div class="faq-question">Is the registration fee refundable?</div><div class="faq-answer">No, registration fees are non-refundable except in case of event cancellation by organizers.</div></div>
+      <div class="faq-item"><div class="faq-question">What should I bring on the event day?</div><div class="faq-answer">College ID card, printed copies (for paper/poster), laptop/prototype (for expo), and AI Summit T-shirt (mandatory dress code).</div></div>
+      <div class="faq-item"><div class="faq-question">Will certificates be provided?</div><div class="faq-answer">Yes! Participation certificate for all, Merit certificates for winners, and Excellence certificates for consolation prize winners.</div></div>
     </div>
   </section>
 
   <section id="venue" class="venue-section">
     <h2 style="color:var(--primary);">Summit Venue</h2>
     <div class="map-container">
-      <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3809.689150108296!2d78.653055614877!3d17.282337488111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9e8f9b8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sGuru%20Nanak%20Institutions%20Technical%20Campus!5e0!3m2!1sen!2sin!4v1731610000000" allowfullscreen="" loading="lazy"></iframe> -->
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3809.689150108296!2d78.653055614877!3d17.282337488111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9e8f9b8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sGuru%20Nanak%20Institutions%20Technical%20Campus!5e0!3m2!1sen!2sin!4v1731610000000" allowfullscreen="" loading="lazy"></iframe>
     </div>
     <p style="margin-top:2rem; font-size:1.3rem;">
       <strong>Guru Nanak Institutions Technical Campus</strong><br>
-      Manchal (M), Khanapur (V), Ibrahimpatnam, Hyderabad, Telangana - 501506<br>
+      Manchal (M), Khanapur (V), Ibrahimpatnam, Ranga Reddy District, Hyderabad, Telangana - 501506<br>
       <a href="https://maps.app.goo.gl/KBuqfGAbng8P6WQ9A" target="_blank" style="color:var(--primary);">Open in Google Maps</a>
     </p>
   </section>
 
   <footer>
     <h2 style="color:var(--primary);">Contact Us</h2>
-    <p><strong>Dr. S. Madhu</strong> (Convenor)<br>Coordinators: Dr. P. Pavan Kumar • Dr. A. Krishna</p>
+    <p><strong>Dr. S. Madhu</strong> (Convenor)<br>
+       Coordinators: Dr. P. Pavan Kumar • Dr. A. Krishna</p>
     <p>Email: <a href="mailto:aisummit@gnitc.ac.in" style="color:var(--primary);">aisummit@gnitc.ac.in</a></p>
-    <p style="margin-top:2rem; color:#64748b;">© 2025 GNITC AI Summit 2026</p>
+    <p style="margin-top:2rem; color:#64748b;">© 2025 GNITC AI Summit 2026. All rights reserved.</p>
   </footer>
 
   <script>
+    // Modal
+    function openModal(event) {
+      const modal = document.getElementById('guidelinesModal');
+      const body = document.getElementById('modalBody');
+      let content = '';
+
+      if (event === 'paper') {
+        content = `<h3>Paper Presentation Guidelines</h3>
+          <ul>
+            <li>Papers must be prepared following the <strong>IEEE format</strong> (maximum 6 pages).</li>
+            <li>Submissions must be original and unpublished.</li>
+            <li>Team size: 1 to 2 members.</li>
+            <li>Participants must bring: a soft copy (USB or email) and two printed copies of the paper.</li>
+            <li>Topics may include: AI, Machine Learning, Data Science, IoT, Robotics, Automation, Cloud Computing, and other engineering-related technologies.</li>
+            <li>Presentation duration: <strong>8 minutes</strong> for presentation + <strong>2 minutes</strong> for Q&A.</li>
+            <li>Slides must be clear, readable, and well-structured.</li>
+            <li>Participants must use the projector and laptop setup provided (or their own if preferred).</li>
+          </ul>`;
+      } else if (event === 'poster') {
+        content = `<h3>Poster Presentation Guidelines</h3>
+          <ul>
+            <li>Poster size must be <strong>A1 (24 × 36 inches)</strong>.</li>
+            <li>Posters must be printed, neat, and professionally designed (no handwritten posters).</li>
+            <li>Team size: up to 2 participants.</li>
+            <li>Presentation time: <strong>5 minutes</strong> per team.</li>
+            <li>Posters should clearly include: Title, Student Name(s), Introduction/Background, Problem Statement, Idea/Concept/Solution, Benefits/Applications/Impact, Visual Elements (diagrams, charts, etc.).</li>
+          </ul>`;
+      } else if (event === 'startup') {
+        content = `<h3>Startup Expo Guidelines</h3>
+          <ul>
+            <li>Team size: 1 to 2 members.</li>
+            <li>Participants should present a <strong>prototype, model, or proof-of-concept</strong> related to AI or engineering applications.</li>
+            <li>Each team will be provided with a table/stall space.</li>
+            <li>Presentation time: <strong>10 minutes + demo</strong>.</li>
+            <li>Judging will focus on: Innovation & originality, Practical feasibility, Problem-solving ability, Technical depth, Market relevance.</li>
+            <li>Any equipment or materials required must be brought by the team.</li>
+            <li>Internet access may be limited, so offline demos are recommended.</li>
+          </ul>`;
+      }
+
+      body.innerHTML = content;
+      modal.style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('guidelinesModal').style.display = 'none';
+    }
+
+    window.onclick = function(e) {
+      const modal = document.getElementById('guidelinesModal');
+      if (e.target === modal) closeModal();
+    }
+
+    // Hamburger Menu
     document.querySelector('.hamburger').addEventListener('click', () => {
       document.querySelector('.nav-links').classList.toggle('active');
     });
+
+    // FAQ Toggle
     document.querySelectorAll('.faq-question').forEach(q => {
       q.addEventListener('click', () => {
         q.parentElement.classList.toggle('active');
@@ -480,4 +605,3 @@
   </script>
 </body>
 </html>
-
