@@ -580,123 +580,6 @@
       .hero h1 { font-size: 3.8rem; }
       .presents { font-size: 3.5rem; }
     }
-    body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
-  }
-
-  .container {
-    width: 90%;
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 60px 20px;
-  }
-
-  h2 {
-    font-size: 2.8rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    color: var(--primary);
-  }
-
-  /* Events Grid – 3 → 2 → 1 column on mobile */
-  .events-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-
-  .event-card {
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 20px;
-    padding: 2rem;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    height: 100%;
-  }
-
-  .event-card:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    border-color: var(--primary);
-  }
-
-  .event-card h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: white;
-  }
-
-  .event-card p {
-    color: #cbd5e1;
-    line-height: 1.7;
-  }
-
-  /* ─────── MOBILE RESPONSIVE BREAKPOINTS ─────── */
-  @media (max-width: 1024px) {
-    .events-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    h2 { font-size: 2.5rem; }
-  }
-
-  @media (max-width: 768px) {
-    .events-grid {
-      grid-template-columns: 1fr;
-    }
-    h2 { font-size: 2.3rem; margin-bottom: 2.5rem; }
-    .container { padding: 80px 20px; }
-
-    .event-card {
-      padding: 2.5rem 1.5rem;
-    }
-
-    .event-card h3 { font-size: 1.6rem; }
-  }
-
-  @media (max-width: 480px) {
-    h2 { font-size: 2rem; }
-    .event-card h3 { font-size: 1.5rem; }
-    .event-card p { font-size: 1rem; }
-
-    /* Make modal content readable on phone */
-    #modalBody {
-      padding: 2rem 1.5rem;
-      font-size: 1.05rem;
-    }
-
-    #modalBody ul, #modalBody ol {
-      padding-left: 1.5rem;
-    }
-
-    /* Blue + Yellow Register Button – perfect on mobile */
-    #modalBody a[href*="konfhub"] {
-      padding: 16px 40px !important;
-      font-size: 1.3rem !important;
-    }
-  }
-
-  /* Modal Improvements for Mobile */
-  .modal {
-    padding: 20px;
-  }
-
-  .modal-content {
-    max-height: 90vh;
-    overflow-y: auto;
-    border-radius: 20px;
-    padding: 2.5rem 2rem;
-  }
-
-  /* Hide scrollbar but keep scrollable */
-  .modal-content::-webkit-scrollbar { display: none; }
-  .modal-content { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 <body>
@@ -744,13 +627,6 @@
       REGISTRATIONS OPEN!
     </div>
   </section> -->
-  <!-- Universal Modal -->
-<div id="universalModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()" style="font-size:2.5rem; color:#fff;">×</span>
-    <div id="modalBody"></div>
-  </div>
-</div>
   <!-- Hero Section with Unique Prize Badge -->
 <section id="home" class="hero">
   <!-- Unique Shape Prize Badge -->
