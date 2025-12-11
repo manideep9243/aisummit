@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AI Summit 2026 | GNITC Hyderabad</title>
-  <meta name="description" content="Department of AIML, AIDS & IoT Presents AI Summit 2026 | 20-21 Feb | Paper, Poster, Startup Expo | ₹1 Lakh Prizes"/>
+  <meta name="description" content="AI Summit 2026 | ₹1 Lakh Prizes | 20-21 Feb | GNITC"/>
 
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <style>
@@ -16,14 +17,57 @@
       --light: #f8fafc;
       --purple: #a78bfa;
       --green: #22c55e;
+      --gold: #ffd700;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: var(--dark); color: var(--light); line-height: 1.7; overflow-x: hidden; }
-    html { scroll-behavior: smooth; }
+    body { 
+      font-family: 'Poppins', sans-serif; 
+      background: var(--dark); 
+      color: var(--light); 
+      overflow-x: hidden; 
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+    /* FULL SCREEN POSTER POPUP - APPEARS ONLY ONCE */
+    #welcomePoster {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.97);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      backdrop-filter: blur(15px);
+    }
+    #welcomePoster img {
+      max-width: 90%;
+      max-height: 92vh;
+      border-radius: 20px;
+      border: 6px solid var(--primary);
+      box-shadow: 0 0 100px rgba(0,212,255,0.8);
+    }
+    .close-poster {
+      position: absolute;
+      top: 30px; right: 40px;
+      width: 70px; height: 70px;
+      background: rgba(255,255,255,0.2);
+      color: white; font-size: 3rem; font-weight: bold;
+      border-radius: 50%; display: flex;
+      align-items: center; justify-content: center;
+      cursor: pointer; transition: 0.4s;
+      backdrop-filter: blur(10px);
+    }
+    .close-poster:hover {
+      background: var(--primary); color: black; transform: scale(1.2);
+    }
+
+    /* Header */
     header {
       position: fixed; top: 0; width: 100%; background: rgba(15,23,42,0.98);
-      backdrop-filter: blur(12px); z-index: 1000; padding: 1rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      backdrop-filter: blur(12px); z-index: 1000; padding: 1rem 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
     }
     nav {
       max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between;
@@ -32,73 +76,239 @@
     .logo-container { display: flex; align-items: center; gap: 14px; cursor: pointer; }
     .gni-logo { height: 58px; transition: 0.3s; }
     .gni-logo:hover { transform: scale(1.08); }
-    .logo-text { font-family: 'Orbitron', sans-serif; font-size: 1.9rem; color: var(--primary); font-weight: 800; }
+    .logo-text { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: var(--primary); font-weight: 800; }
     .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
-    .nav-links { display: flex; gap: 2.3rem; }
-    .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: 0.3s; position: relative; }
-    .nav-links a::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 3px; background: var(--primary); transition: 0.3s; }
+    .nav-links { display: flex; gap: 2.5rem; }
+    .nav-links a {
+      color: white; text-decoration: none; font-weight: 500; transition: 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 3px;
+      background: var(--primary); transition: 0.3s;
+    }
     .nav-links a:hover::after { width: 100%; }
     .nav-links a:hover { color: var(--primary); }
 
+    /* Hero with Prize Badge & Cursive Presents */
     .hero {
       min-height: 100vh;
       background: linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.82)),
-                  url('https://source.unsplash.com/random/1600x900/?ai,neural,network,futuristic') center/cover no-repeat;
+                  url('https://source.unsplash.com/random/1600x900/?ai,neural,network') center/cover no-repeat;
       display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center; padding: 160px 1.5rem 100px;
+      text-align: center; padding: 180px 1.5rem 100px; position: relative;
     }
-    .dept-presents { font-size: 1.7rem; color: var(--purple); letter-spacing: 3px; margin-bottom: 1rem; }
+    /* Clean Ribbon Prize Badge - No Arrow */
+.prize-badge {
+  position: absolute;
+  top: 120px;
+  right: 20px;
+  background: linear-gradient(135deg, #ffd700, #ffb300, #ff8c00);
+  color: #000;
+  font-weight: bold;
+  padding: 1.2rem 2.5rem;
+  border-radius: 50px;
+  box-shadow: 0 10px 30px rgba(255, 140, 0, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.4rem;
+  z-index: 10;
+  border: 4px solid #fff;
+  animation: float 6s ease-in-out infinite;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.prize-badge i {
+  font-size: 2rem;
+  color: #b45309;
+  animation: bounce 2s infinite;
+}
+
+.prize-badge span {
+  display: block;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.prize-badge strong {
+  display: block;
+  font-size: 2.2rem;
+  color: #000;
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* Floating & Bounce Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .prize-badge {
+    top: 100px;
+    right: 10px;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    gap: 8px;
+  }
+  .prize-badge i { font-size: 1.6rem; }
+  .prize-badge strong { font-size: 1.8rem; }
+}
+
+@media (max-width: 480px) {
+  .prize-badge {
+    padding: 0.9rem 1.8rem;
+    font-size: 1.1rem;
+  }
+  .prize-badge strong { font-size: 1.6rem; }
+}
+    .prize-badge {
+      position: absolute; top: 500px; right: 5%;
+      background: linear-gradient(45deg, #ffd700, #ffaa00);
+      color: black; padding: 20px 50px; border-radius: 50px;
+      font-size: 2rem; font-weight: bold;
+      box-shadow: 0 10px 40px rgba(255,215,0,0.7);
+      animation: prizePulse 2s infinite; z-index: 10;
+    }
+    @keyframes prizePulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    .dept-line { font-size: 2rem; color: var(--purple); letter-spacing: 4px; }
+    .presents {
+      font-family: 'Dancing Script', cursive;
+      font-size: 4.5rem;
+      color: #ff6b6b;
+      margin: 1rem 0 2rem;
+      text-shadow: 0 0 30px rgba(255,107,107,0.6);
+    }
     .hero h1 {
-      font-family: 'Orbitron', sans-serif; font-size: 5.2rem; font-weight: 800;
+      font-family: 'Orbitron', sans-serif; font-size: 6rem; font-weight: 800;
       background: linear-gradient(90deg, var(--primary), var(--purple));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin: 1rem 0;
     }
-    .hero .date { font-size: 2.3rem; color: var(--primary); margin: 1rem 0; font-weight: 600; }
-    .hero .venue { font-size: 1.6rem; color: #e2e8f0; margin-bottom: 3rem; }
+    .hero .date { font-size: 2.6rem; color: var(--primary); margin: 1.5rem 0; font-weight: 600; }
+    .hero .venue { font-size: 1.8rem; color: #e2e8f0; margin-bottom: 3rem; }
 
     .reg-popup {
       background: linear-gradient(45deg, var(--green), #16a34a); color: white;
-      padding: 20px 60px; border-radius: 60px; font-weight: bold; font-size: 1.5rem;
-      cursor: pointer; animation: pulse 2s infinite; box-shadow: 0 12px 35px rgba(34,197,94,0.5);
+      padding: 25px 80px; border-radius: 60px; font-weight: bold; font-size: 1.8rem;
+      cursor: pointer; animation: pulse 2s infinite; box-shadow: 0 15px 40px rgba(34,197,94,0.6);
       transition: 0.3s;
     }
     .reg-popup:hover { transform: scale(1.12); }
-    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
 
-    section { padding: 110px 1.5rem; text-align: center; }
+    section { padding: 120px 1.5rem; text-align: center; opacity: 0; transform: translateY(50px); transition: all 1s ease; }
+    section.visible { opacity: 1; transform: translateY(0); }
     .container { max-width: 1300px; margin: 0 auto; }
 
     h2 {
       font-family: 'Orbitron', sans-serif !important;
-      font-size: 3.2rem !important;
+      font-size: 3.5rem !important;
       font-weight: 800 !important;
       background: linear-gradient(90deg, var(--primary), var(--purple));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-align: center;
       margin: 0 auto 4rem;
       position: relative;
       display: inline-block;
     }
     h2::after {
-      content: ''; width: 120px; height: 5px; background: var(--primary);
+      content: ''; width: 120px; height: 6px; background: var(--primary);
       display: block; margin: 20px auto; border-radius: 5px;
     }
+     /* Supported By Section - Clean & Normal Containers */
+.supported-by {
+  padding: 100px 1.5rem;
+  background: #1e293b;
+  text-align: center;
+}
 
-    /* Supported By */
-    .supported-by { padding: 90px 1.5rem; background: #1e293b; }
-    .supported-by h3 { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: var(--primary); margin-bottom: 3rem; }
-    .clubs-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2.5rem; max-width: 1100px; margin: 0 auto;
-    }
-    .club-box {
-      background: #334155; padding: 2.5rem; border-radius: 20px;
-      transition: 0.4s; border: 2px solid transparent;
-    }
-    .club-box:hover { transform: translateY(-15px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(0,212,255,0.25); }
-    .club-box img { width: 140px; height: 140px; object-fit: contain; filter: brightness(0) invert(1); margin-bottom: 1rem; }
+.supported-by h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.4rem;
+  color: var(--primary);
+  margin-bottom: 4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
 
+/* Grid for 3 containers */
+.clubs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Simple, clean container */
+.club-box {
+  background: #162032;
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 2px solid #334155;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.club-box:hover {
+  transform: translateY(-12px);
+  border-color: var(--primary);
+  box-shadow: 0 20px 40px rgba(0, 212, 255, 0.25);
+}
+
+/* Normal image display - no filter, natural colors */
+.club-box img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  margin-bottom: 1.5rem;
+}
+
+/* Club name */
+
+.club-box p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .clubs-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .clubs-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .supported-by h3 {
+    font-size: 2rem;
+  }
+  .club-box img {
+    width: 140px;
+    height: 140px;
+  }
+}
     /* About & Takeaways */
     .about-box {
       background: #1e293b; padding: 3rem; border-radius: 20px; max-width: 1000px; margin: 0 auto 4rem;
@@ -114,35 +324,88 @@
     }
     .takeaways li:hover { background: #475569; transform: translateY(-8px); }
 
-    /* Committee */
-    .committee-categories {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem; max-width: 1200px; margin: 3rem auto;
+    /* Sponsors Section */
+    .sponsors-section {
+      background: #1e293b; padding: 100px 1.5rem;
     }
-    .cat-card {
-      background: #1e293b; padding: 2.5rem; border-radius: 20px;
-      cursor: pointer; transition: 0.4s; border: 2px solid #334155;
+    .sponsors-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem; max-width: 1200px; margin: 4rem auto;
     }
-    .cat-card:hover {
-      transform: translateY(-12px); border-color: var(--primary);
-      box-shadow: 0 20px 40px rgba(0,212,255,0.2);
+    .sponsor-item {
+      background: white; padding: 2rem; border-radius: 20px;
+      transition: 0.5s; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
-    .cat-card h3 { color: var(--primary); font-size: 1.6rem; margin-bottom: 0.8rem; }
+    .sponsor-item:hover { transform: translateY(-15px); box-shadow: 0 20px 50px rgba(0,212,255,0.4); }
+    .sponsor-item img { height: 90px; filter: grayscale(100%); transition: 0.5s; }
+    .sponsor-item:hover img { filter: grayscale(0%); }
 
-    /* Events & Evaluation Cards */
+    /* Committee Grid */
+  .committee-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+  }
+  .committee-card {
+    background: linear-gradient(135deg, #1e293b, #162032);
+    padding: 2.2rem;
+    border-radius: 20px;
+    border: 1px solid #334155;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    transition: all 0.4s ease;
+  }
+  .committee-card:hover {
+    transform: translateY(-12px);
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(0,212,255,0.25);
+  }
+  .committee-card h3 {
+    color: var(--primary);
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+  .committee-card ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .committee-card li {
+    padding: 0.7rem 0;
+    border-bottom: 1px dashed #475569;
+    font-size: 1.05rem;
+    color: #e2e8f0;
+    line-height: 1.6;
+  }
+  .committee-card li:last-child { border-bottom: none; }
+  .committee-card strong {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .committee-grid { grid-template-columns: 1fr; padding: 0 2rem; }
+    .committee-card { padding: 2rem; }
+    .committee-card h3 { font-size: 1.5rem; }
+  }
+
+    /* Events Grid */
     .events-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; max-width: 1200px; margin: 3rem auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 2.5rem; max-width: 1200px; margin: 3rem auto;
     }
     .event-card {
       background: #1e293b; padding: 3rem 2rem; border-radius: 24px;
-      border: 2px solid #334155; cursor: pointer; transition: 0.4s;
+      border: 2px solid #334155; cursor: pointer; transition: 0.5s;
     }
     .event-card:hover {
-      transform: translateY(-15px); border-color: var(--primary);
-      box-shadow: 0 20px 40px rgba(0,212,255,0.2);
+      transform: translateY(-20px); border-color: var(--primary);
+      box-shadow: 0 25px 50px rgba(0,212,255,0.3);
     }
 
-    /* ZIG-ZAG TIMELINE */
+ /* ZIG-ZAG TIMELINE */
     .zigzag-timeline {
       position: relative;
       max-width: 1000px;
@@ -199,6 +462,68 @@
       .timeline-item.right { left: 0%; }
       .timeline-item::after, .timeline-item.right::after { left: 17px; }
     }
+    .prizes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 3rem auto;
+  }
+  .prize-card {
+    background: linear-gradient(135deg, #1e293b, #162032);
+    padding: 2.5rem;
+    border-radius: 24px;
+    text-align: center;
+    border: 2px solid #334155;
+    transition: all 0.4s ease;
+  }
+  .prize-card:hover {
+    transform: translateY(-15px);
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(0,212,255,0.3);
+  }
+  .prize-card h3 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .trophy {
+    font-size: 4rem;
+    color: #fbbf24;
+    margin: 1rem 0;
+  }
+  .rank {
+    font-size: 1.3rem;
+    margin: 1rem 0;
+    color: #e2e8f0;
+  }
+  .extra {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    margin-top: 1rem;
+  }
+  .consolation-box {
+    background: #1e293b;
+    padding: 2rem;
+    border-radius: 18px;
+    max-width: 800px;
+    margin: 2rem auto;
+    border: 1px dashed var(--primary);
+  }
+  .cert-card {
+    background: #1e293b;
+    padding: 2rem;
+    border-radius: 18px;
+    width: 280px;
+    border: 1px solid #334155;
+  }
+  .cert-card p { margin-top: 1rem; font-size: 1.1rem; }
+
+  @media (max-width: 768px) {
+    .prizes-grid { grid-template-columns: 1fr; padding: 0 1.5rem; }
+    .prize-card { padding: 2rem; }
+    .prize-highlight { font-size: 3.5rem; }
+  }
 
     /* QR + Register */
     .qr-register { padding: 120px 1.5rem; background: linear-gradient(135deg, #1e293b, #0f172a); }
@@ -208,13 +533,33 @@
     .reg-big-btn { background: var(--primary); color: black; padding: 28px 90px; font-size: 2.2rem; font-weight: bold; border-radius: 80px; text-decoration: none; box-shadow: 0 20px 50px rgba(0,212,255,0.5); transition: 0.3s; }
     .reg-big-btn:hover { transform: translateY(-10px); }
 
-    /* Gallery */
-    .gallery { padding: 100px 1.5rem; background: var(--dark); }
-    .gallery-container { display: flex; overflow-x: auto; gap: 2rem; padding: 2rem 0; scrollbar-width: none; }
-    .gallery-container::-webkit-scrollbar { display: none; }
-    .gallery img { height: 340px; width: 480px; object-fit: cover; border-radius: 24px; flex-shrink: 0; box-shadow: 0 20px 50px rgba(0,0,0,0.7); transition: 0.4s; }
-    .gallery img:hover { transform: scale(1.06); }
+    /* QR + Register */
+    .qr-register { padding: 120px 1.5rem; background: linear-gradient(135deg, #1e293b, #0f172a); }
+    .qr-flex { display: flex; align-items: center; justify-content: center; gap: 100px; flex-wrap: wrap; max-width: 1000px; margin: 4rem auto; }
+    .qr-code { background: white; padding: 35px; border-radius: 28px; box-shadow: 0 25px 60px rgba(0,0,0,0.7); }
+    .qr-code img { width: 320px; height: 320px; }
+    .reg-big-btn { background: var(--primary); color: black; padding: 28px 90px; font-size: 2.2rem; font-weight: bold; border-radius: 80px; text-decoration: none; box-shadow: 0 20px 50px rgba(0,212,255,0.5); transition: 0.3s; }
+    .reg-big-btn:hover { transform: translateY(-10px); }
 
+    /* Continuous Gallery */
+    .gallery-container {
+      display: flex; overflow: hidden; white-space: nowrap; padding: 2rem 0;
+    }
+    .gallery-track {
+      display: inline-block; animation: scroll 30s linear infinite;
+    }
+    .gallery-track:hover { animation-play-state: paused; }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+    .gallery img {
+      height: 300px; width: 450px; object-fit: cover; border-radius: 20px;
+      margin: 0 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+      transition: 0.4s;
+    }
+    .gallery img:hover { transform: scale(1.08); }
+    
     /* Contact */
     .contact-section { padding: 130px 1.5rem; background: #1e293b; }
     .social-links { display: flex; justify-content: center; gap: 2.5rem; margin: 4rem 0; flex-wrap: wrap; }
@@ -222,29 +567,33 @@
     .social-links a:hover { background: var(--primary); color: black; transform: translateY(-12px); }
 
     /* Modal */
-    .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); overflow-y: auto; padding: 2rem; }
-    .modal-content { background: #1e293b; margin: 5% auto; padding: 4rem; border-radius: 28px; max-width: 900px; position: relative; border: 3px solid var(--primary); box-shadow: 0 30px 70px rgba(0,212,255,0.4); }
+    .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); padding: 2rem; overflow-y: auto; }
+    .modal-content { background: #1e293b; margin: 5% auto; padding: 4rem; border-radius: 28px; max-width: 900px; border: 3px solid var(--primary); box-shadow: 0 30px 70px rgba(0,212,255,0.4); }
     .close { position: absolute; top: 20px; right: 35px; font-size: 3.8rem; color: var(--primary); cursor: pointer; }
-    .register-btn { background: var(--green); color: white; padding: 16px 50px; border-radius: 50px; font-weight: bold; text-decoration: none; display: inline-block; margin-top: 2rem; font-size: 1.3rem; }
 
     footer { background: #0f172a; padding: 5rem 1.5rem; text-align: center; border-top: 1px solid #334155; color: #64748b; }
 
     @media (max-width: 768px) {
       .hamburger { display: block; }
-      .nav-links { position: absolute; top: 100%; left: 0; right: 0; background: #0f172a; flex-direction: column; padding: 2rem 0; display: none; border-top: 1px solid #334155; }
+      .nav-links { position: absolute; top: 100%; left: 0; right: 0; background: #0f172a; flex-direction: column; padding: 2rem 0; display: none; }
       .nav-links.active { display: flex; }
-      .hero h1 { font-size: 3.6rem; }
-      .qr-flex { flex-direction: column; gap: 50px; }
-      .gallery img { height: 240px; width: 340px; }
+      .hero h1 { font-size: 3.8rem; }
+      .presents { font-size: 3.5rem; }
     }
   </style>
 </head>
 <body>
 
+  <!-- WELCOME POSTER POPUP -->
+  <div id="welcomePoster">
+    <div class="close-poster" onclick="closePoster()">X</div>
+    <img src="poster.jpeg" alt="AI Summit 2026 Poster">
+  </div>
+
   <!-- Header -->
   <header>
     <nav>
-      <div class="logo-container" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <div class="logo-container">
         <img src="logo.jpeg" alt="GNI Logo" class="gni-logo">
         <div class="logo-text">AI SUMMIT 2026</div>
       </div>
@@ -256,45 +605,83 @@
         <a href="#events">Events</a>
         <a href="#evaluation">Evaluation</a>
         <a href="#schedule">Schedule</a>
+        <a href="#prizes">Prizes</a>
+        <!-- <a href="#sponsors">Sponsors</a> -->
         <a href="#register">Register</a>
         <a href="#gallery">Gallery</a>
+        <!-- <a href="#venue">Venue</a> -->
         <a href="#contact">Contact</a>
       </div>
     </nav>
   </header>
 
-  <!-- Hero -->
+  <!-- Hero
   <section id="home" class="hero">
-    <div class="dept-presents">DEPARTMENT OF AIML | AIDS | IoT PRESENTS</div>
+    <div class="prize-badge"><marquee>Prize Worth ₹1 Lakh!</marquee></div>
+    <div class="dept-line">DEPARTMENT OF AIML | AI&DS | IoT</div>
+    <div class="presents">presents</div>
     <h1>AI SUMMIT 2026</h1>
     <div class="date">20 – 21 February 2026</div>
     <div class="venue">Guru Nanak Institutions Technical Campus, Hyderabad</div>
     <div class="reg-popup" onclick="window.open('https://konfhub.com/ai-summit', '_blank')">
-      REGISTRATIONS ARE NOW OPEN!
+      REGISTRATIONS OPEN!
     </div>
-  </section>
+  </section> -->
+  <!-- Hero Section with Unique Prize Badge -->
+<section id="home" class="hero">
+  <!-- Unique Shape Prize Badge -->
+  <div class="prize-badge">
+    <span class="prize-text">
+      <i class="fas fa-trophy"></i> Prize Pool<br>
+      <strong>₹1,00,000</strong>
+    </span>
+  </div>
 
-  <!-- Supported By -->
-  <section class="supported-by">
+  <div class="dept-line">DEPARTMENT OF AIML | AI&DS | IoT</div>
+  <div class="presents">presents</div>
+  <h1>AI SUMMIT 2026</h1>
+  <div class="date">20 – 21 February 2026</div>
+  <div class="venue">Guru Nanak Institutions Technical Campus, Hyderabad</div>
+
+  <!-- Registration Open Popup Button -->
+  <div class="reg-popup" onclick="window.open('https://konfhub.com/ai-summit', '_blank')">
+    REGISTRATIONS ARE OPEN!
+  </div>
+</section>
+
+<section class="supported-by" id="supported">
+  <div class="container">
+    <h3>This Event is Proudly Supported By</h3>
+
+    <div class="clubs-grid">
+      <div class="club-box">
+        <img src="1.jpeg" alt="AI Coders Club">
+        <p>AI Coders Club</p>
+      </div>
+      <div class="club-box">
+        <img src="2.jpeg" alt="IoT Club">
+        <p>IoT Club</p>
+      </div>
+      <div class="club-box">
+        <img src="3.png" alt="FOSS Club">
+        <p>FOSS Club</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Sponsors Section -->
+  <section id="sponsors" class="sponsors-section">
     <div class="container">
-      <h3>This Event is Proudly Supported By</h3>
-      <div class="clubs-grid">
-        <div class="club-box">
-          <img src="https://via.placeholder.com/140/00d4ff/ffffff?text=AI+CODES+CLUB" alt="AI Codes Club">
-          <p>AI Codes Club</p>
-        </div>
-        <div class="club-box">
-          <img src="https://via.placeholder.com/140/00d4ff/ffffff?text=FOOSS" alt="FOOSS">
-          <p>FOOSS Club</p>
-        </div>
-        <div class="club-box">
-          <img src="https://via.placeholder.com/140/00d4ff/ffffff?text=ROBOTICS" alt="Robotics Club">
-          <p>Robotics & Innovation Club</p>
-        </div>
+      <h2>Our Sponsors</h2>
+      <div class="sponsors-grid">
+        <div class="sponsor-item"><img src="" alt=""></div>
+        <div class="sponsor-item"><img src="" alt=""></div>
+        <div class="sponsor-item"><img src="https://via.placeholder.com/200x80/ffffff/001?text=SPONSOR+3" alt=""></div>
+        <div class="sponsor-item"><img src="https://via.placeholder.com/200x80/ffffff/001?text=SPONSOR+4" alt=""></div>
       </div>
     </div>
   </section>
-
   <!-- About -->
   <section id="about" class="container">
     <h2>About AI Summit 2026</h2>
@@ -315,20 +702,119 @@
     </div>
   </section>
 
-  <!-- Organizing Committee -->
-  <section id="committee" class="container">
-    <h2>Organizing Committee</h2>
-    <div class="committee-categories">
-      <div class="cat-card" onclick="openCommitteeModal('chief')"><h3>Chief Patrons & Leadership</h3><p>View Members</p></div>
-      <div class="cat-card" onclick="openCommitteeModal('coord')"><h3>Event Coordinators</h3><p>View</p></div>
-      <div class="cat-card" onclick="openCommitteeModal('advisory')"><h3>Advisory Committee</h3><p>View</p></div>
-      <div class="cat-card" onclick="openCommitteeModal('organizing')"><h3>Organizing Committee</h3><p>View</p></div>
-      <div class="cat-card" onclick="openCommitteeModal('technical')"><h3>Technical Committee</h3><p>View</p></div>
-      <div class="cat-card" onclick="openCommitteeModal('disciplinary')"><h3>Disciplinary Committee</h3><p>View</p></div>
-      <div class="cat-card" onclick="openCommitteeModal('student')"><h3>Student Committee</h3><p>View</p></div>
-    </div>
-  </section>
+<!-- Organizing Committee - All Members in Bullet Lists -->
+<section id="committee" class="container">
+  <h2>Organizing Committee</h2>
+  <div class="committee-grid">
 
+    <!-- 1. Chief Patrons -->
+    <div class="committee-card">
+      <h3>Chief Patrons</h3>
+      <ul>
+        <li><strong>Mr. Sardar Gagandeep Singh Kohli</strong><br>Vice Chairman, Guru Nanak Institutions</li>
+        <li><strong>Dr. H.S. Saini</strong><br>Managing Director, GNI</li>
+      </ul>
+    </div>
+
+    <!-- 2. Chairman & Co-Chairman -->
+    <div class="committee-card">
+      <h3>Chairman & Co-Chairman</h3>
+      <ul>
+        <li><strong>Dr. S. Sreenatha Reddy</strong><br>Director, GNITC • Chairman</li>
+        <li><strong>Dr. Rishi Sayal</strong><br>Associate Director, GNITC • Co-Chairman</li>
+      </ul>
+    </div>
+
+    <!-- 3. Steering Committee -->
+    <div class="committee-card">
+      <h3>Steering Committee</h3>
+      <ul>
+        <li><strong>Dr. P. Parthasaradhy</strong><br>Joint Director, GNITC</li>
+        <li><strong>Dr. S. V. Ranganayakulu</strong><br>R&D Dean, GNITC</li>
+      </ul>
+    </div>
+
+    <!-- 4. Convenor & Coordinators -->
+    <div class="committee-card">
+      <h3>Convenor & Coordinators</h3>
+      <ul>
+        <li><strong>Dr. S. Madhu</strong><br>HoD – CSM | CSO | AI&DS • Convenor</li>
+        <li><strong>Dr. P. Pavan Kumar</strong><br>Asst. Professor, AIML</li>
+        <li><strong>Dr. A. Krishna</strong><br>Asst. Professor, IoT</li>
+      </ul>
+    </div>
+
+    <!-- 5. Advisory Committee -->
+    <div class="committee-card">
+      <h3>Advisory Committee</h3>
+      <ul>
+        <li>Mrs. M. V. Anjana Devi • Assoc. Prof, AIML</li>
+        <li>Mr. A. Lakshmi Narayana • Asst. Prof, AIML</li>
+        <li>Mr. Suyash Agrawal • Asst. Prof, AIML</li>
+        <li>Mr. V. Kiranmai • Asst. Prof, AIML</li>
+        <li>Mr. B. Maria Joseph • Asst. Prof, AIML</li>
+      </ul>
+    </div>
+
+    <!-- 6. Event Management Committee -->
+    <div class="committee-card">
+      <h3>Event Management Committee</h3>
+      <ul>
+        <li>Mr. M. Kumar • Asst. Prof, AIML</li>
+        <li>Mr. Ch. Murali Krishna • Asst. Prof, AIML</li>
+        <li>Mrs. B. Surekha • Asst. Prof, AIML</li>
+        <li>Mr. Veeranjaneyulu • Asst. Prof, AIML</li>
+        <li>Mrs. P. Venkata Pratima • Asst. Prof, AIML</li>
+        <li>Mrs. Y. Shravani • Asst. Prof, AIML</li>
+      </ul>
+    </div>
+
+    <!-- 7. Technical Committee -->
+    <div class="committee-card">
+      <h3>Technical Committee</h3>
+      <ul>
+        <li>Mrs. Mary Teresa</li>
+        <li>Mr. Aadil Ahmad Dar</li>
+        <li>Mr. M. Reddi Durga Sree</li>
+        <li>Mrs. Aabida Farooq</li>
+        <li>Mrs. G. Swarnalatha • AI&DS</li>
+        <li>Mr. MD. Saleem Ahmed</li>
+        <li>Mr. Vinod • AI&DS</li>
+        <li>Mr. P. Shankar</li>
+      </ul>
+    </div>
+
+    <!-- 8. Disciplinary Committee -->
+    <div class="committee-card">
+      <h3>Disciplinary Committee</h3>
+      <ul>
+        <li>Mr. P. Samba Shiva Rao</li>
+        <li>Mr. V. Narsimha</li>
+        <li>Mr. P. Jangaiah</li>
+        <li>Mrs. Sk. Munnisa</li>
+        <li>Mr. Aravind</li>
+      </ul>
+    </div>
+
+    <!-- 9. Student Committee -->
+    <div class="committee-card">
+      <h3>Student Committee</h3>
+      <ul>
+        <li>Mr. Venkata Sai Likith • AIDS</li>
+        <li>Mr. Krishna Manohar • IOT</li>
+        <li>Mr. Kevin Paul • AIML</li>
+        <li>Mr. SP. Sheshank • IOT</li>
+        <li>Ms. Harini • AI&DS</li>
+        <li>Ms. Vasitha • AIML</li>
+        <li>Mr. P. Siva Sai • AIML</li>
+        <li>Mr. O. Nithish Kumar • AIML</li>
+        <li>Ms. Siri Sathwika • AIML</li>
+        <li>Mr. Harsha Vardhan • IOT</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
   <!-- Events -->
   <section id="events" class="container">
     <h2>Events</h2>
@@ -411,6 +897,85 @@
       </div>
     </div>
   </section>
+<!-- Prizes & Awards Section -->
+<section id="prizes" class="container">
+  <h2>Prizes & Awards</h2>
+  
+  <!-- Total Prize Pool Highlight -->
+  <div style="text-align:center; margin:2rem 0;">
+    <div class="prize-highlight">Total Prize Pool</div>
+    <div style="font-size:5rem; font-weight:bold; color:var(--primary); margin:1rem 0;">₹1,00,000</div>
+    <p style="font-size:1.6rem; color:#e2e8f0;">Exciting Cash Prizes + Certificates + Recognition</p>
+  </div>
+
+  <!-- Event-wise Prizes -->
+  <div class="prizes-grid">
+    <!-- Paper Presentation -->
+    <div class="prize-card">
+      <h3>Paper Presentation</h3>
+      <div class="trophy"><i class="fas fa-trophy"></i></div>
+      <p class="rank"><strong>1st Prize</strong> — To be disclosed on Valedictory Day</p>
+      <p class="rank"><strong>2nd Prize</strong> — To be disclosed on Valedictory Day</p>
+      <p class="extra">+ Merit Certificate + Recognition on Website & Social Media</p>
+    </div>
+
+    <!-- Poster Presentation -->
+    <div class="prize-card">
+      <h3>Poster Presentation</h3>
+      <div class="trophy"><i class="fas fa-trophy"></i></div>
+      <p class="rank"><strong>1st Prize</strong> — To be disclosed on Valedictory Day</p>
+      <p class="rank"><strong>2nd Prize</strong> — To be disclosed on Valedictory Day</p>
+      <p class="extra">+ Merit Certificate + Recognition on Website & Social Media</p>
+    </div>
+
+    <!-- Startup Expo -->
+    <div class="prize-card">
+      <h3>Startup Expo</h3>
+      <div class="trophy"><i class="fas fa-trophy"></i></div>
+      <p class="rank"><strong>1st Prize</strong> — To be disclosed on Valedictory Day</p>
+      <p class="rank"><strong>2nd Prize</strong> — To be disclosed on Valedictory Day</p>
+      <p class="extra">+ Merit Certificate + Recognition on Website & Social Media</p>
+    </div>
+  </div>
+
+  <!-- Consolation & Certificates -->
+  <div style="margin-top:4rem; text-align:center;">
+    <h3 style="font-size:2.2rem; color:var(--primary); margin-bottom:1.5rem;">Additional Recognition</h3>
+    <div class="consolation-box">
+      <p><strong>Consolation Prizes</strong> (Up to 2 per event)</p>
+      <ul style="list-style:none; margin-top:1rem; font-size:1.2rem;">
+        <li>Certificate of Appreciation</li>
+        <li>Memento / Gift Item</li>
+        <li>Recognition on Event Website & Social Media</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:3rem;">
+      <h3 style="font-size:2rem; color:var(--primary);">Certificates for Everyone</h3>
+      <div style="display:flex; justify-content:center; gap:3rem; flex-wrap:wrap; margin-top:2rem;">
+        <div class="cert-card">
+          <i class="fas fa-certificate fa-3x" style="color:var(--primary);"></i>
+          <p><strong>Participation Certificate</strong><br>For all registered participants</p>
+        </div>
+        <div class="cert-card">
+          <i class="fas fa-award fa-3x" style="color:#f59e0b;"></i>
+          <p><strong>Merit Certificate</strong><br>For 1st & 2nd Prize Winners</p>
+        </div>
+        <div class="cert-card">
+          <i class="fas fa-star fa-3x" style="color:#10b981;"></i>
+          <p><strong>Excellence Certificate</strong><br>For Consolation Prize Winners</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div style="margin-top:3rem; padding:2rem; background:#1e293b; border-radius:18px; max-width:900px; margin-left:auto; margin-right:auto;">
+      <p style="font-size:1.6rem; color:#22c55e; font-weight:bold;">
+        Special Note: 1 Lakh Prize Pool includes Consolation Prize Money.<br>
+        All prizes will be revealed & distributed during the Valedictory Ceremony on 21st February 2026.
+      </p>
+    </div> -->
+  </div>
+</section>
 
   <!-- Register -->
   <section id="register" class="qr-register">
@@ -428,18 +993,24 @@
     </div>
   </section>
 
-  <!-- Gallery -->
+ 
+  <!-- Gallery - Continuous Flow -->
   <section id="gallery" class="gallery">
     <div class="container">
       <h2>Gallery</h2>
       <div class="gallery-container">
-        <img src="https://source.unsplash.com/random/480x340/?ai,summit" alt="">
-        <img src="https://source.unsplash.com/random/480x340/?students,presentation" alt="">
-        <img src="https://source.unsplash.com/random/480x340/?robotics,expo" alt="">
-        <img src="https://source.unsplash.com/random/480x340/?award,ceremony" alt="">
-        <img src="https://source.unsplash.com/random/480x340/?college,event" alt="">
-        <img src="https://source.unsplash.com/random/480x340/?ai,innovation" alt="">
-        <img src="https://source.unsplash.com/random/480x340/?coding,club" alt="">
+        <div class="gallery-track">
+          <img src="https://source.unsplash.com/random/450x300/?ai,event" alt="">
+          <img src="https://source.unsplash.com/random/450x300/?students,ai" alt="">
+          <img src="https://source.unsplash.com/random/450x300/?robotics" alt="">
+          <img src="https://source.unsplash.com/random/450x300/?prize" alt="">
+          <img src="https://source.unsplash.com/random/450x300/?tech,fest" alt="">
+          <img src="https://source.unsplash.com/random/450x300/?innovation" alt="">
+          <img src="https://source.unsplash.com/random/450x300/?ai,summit" alt="">
+          <!-- Duplicate for seamless loop -->
+          <img src="https://source.unsplash.com/random/450x300/?ai,event" alt="">
+          <img src="https://source.unsplash.com/random/450x300/?students,ai" alt="">
+        </div>
       </div>
     </div>
   </section>
@@ -449,45 +1020,57 @@
     <div class="container">
       <h2>Contact Us</h2>
       <div style="font-size:1.3rem;line-height:2.2;max-width:800px;margin:0 auto;">
-        <p><strong>Dr. S. Madhu</strong><br>HoD - AIML | AIDS | IoT<br><strong>Convenor, AI Summit 2026</strong><br>Mobile: +91 98765 43210</p>
+        <p><strong>Dr. S. Madhu</strong>    HoD - AIML | AIDS | IoT<br><strong>Convenor, AI Summit 2026</strong><br>Mobile: +91 9553255085</p>
         <p style="margin:2.5rem 0;"><strong>Coordinators:</strong><br>
-          Dr. P. Pavan Kumar → +91 98765 43211<br>
-          Dr. A. Krishna → +91 98765 43212
+          Dr. P. Pavan Kumar<em>   Asst. Professor, AIML, GNITC</em><br> +91 9553552112<br>
+          Dr. A. Krishna<em>   Asst. Professor, IoT, GNITC</em><br> +91 9640082404
         </p>
-        <p>Email: <a href="mailto:aisummit@gnitc.ac.in" style="color:var(--primary);">aisummit@gnitc.ac.in</a></p>
-      </div>
+        <p>Email: <a href="mailto:aisummit.gnitc@gniindia.org" style="color:var(--primary);">aisummit.gnitc@gniindia.org</a></p>
+      </p>
+    </div>
 
-     <div class="social-links">
-        <a href="https://www.facebook.com/share/1CxYWBGSi6/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/gurunanakinstitution?igsh=MTR1dTNkMGVvMjU4MQ==" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/in/guru-nanak-institution-india-49aa1472/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://x.com/GNInstitutions" target="_blank"><i class="fab fa-twitter"></i></a>
+      <div class="social-links">
+        <a href="https://www.facebook.com/gnitcofficial" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/gnitcofficial/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/c/GuruNanakInstitutions" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.linkedin.com/school/guru-nanak-institutions/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/gnitcofficial" target="_blank"><i class="fab fa-twitter"></i></a>
       </div>
     </div>
   </section>
-
-  <!-- Modal -->
+  <!-- Modal & Scripts -->
   <div id="universalModal" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeModal()">×</span>
+      <span class="close" onclick="closeModal()">X</span>
       <div id="modalBody"></div>
     </div>
   </div>
-
-  <footer>
-    <p>© 2025 Department of AIML, AIDS & IoT, GNITC | AI Summit 2026</p>
-  </footer>
+  </div>
 
   <script>
-    const modal = document.getElementById('universalModal');
-    const modalBody = document.getElementById('modalBody');
+    // Poster popup - appears only once
+    if (!localStorage.getItem('poster2026')) {
+      document.getElementById('welcomePoster').style.display = 'flex';
+    }
+    function closePoster() {
+      document.getElementById('welcomePoster').style.display = 'none';
+      localStorage.setItem('poster2026', 'shown');
+    }
 
+    // Smooth scroll animation on load
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('section').forEach((sec, i) => {
+        setTimeout(() => sec.classList.add('visible'), i * 200);
+      });
+    });
+
+    // Rest of your modal functions (openModal, openCommitteeModal, etc.) remain same
     function openModal(type) {
       let content = '';
 
-      // Events
+    // Events
       if (type === 'paper') {
-        content = `<h3 style="color:var(--primary);font-size:2.6rem;margin-bottom:1.5rem;">Paper Presentation Guidelines</h3>
+        content = `<h3 style="color:var(--primary);font-size:2.4rem;margin-bottom:1.5rem;">Paper Presentation Guidelines</h3>
           <ul style="text-align:left;padding-left:2rem;font-size:1.1rem;line-height:2;">
             <li>IEEE format, maximum 6 pages, original work only</li>
             <li>Team: 1–2 members</li>
@@ -495,9 +1078,8 @@
             <li>Bring soft + 2 printed copies</li>
           </ul>
           <a href="https://konfhub.com/ai-summit" target="_blank" class="register-btn">REGISTER NOW</a>`;
-      }
-      else if (type === 'poster') {
-        content = `<h3 style="color:var(--primary);font-size:2.6rem;margin-bottom:1.5rem;">Poster Presentation Guidelines</h3>
+      } else if (type === 'poster') {
+        content = `<h3 style="color:var(--primary);font-size:2.4rem;margin-bottom:1.5rem;">Poster Presentation Guidelines</h3>
           <ul style="text-align:left;padding-left:2rem;font-size:1.1rem;line-height:2;">
             <li>A1 size (24×36 inches), printed only</li>
             <li>Team: max 2 members</li>
@@ -505,9 +1087,8 @@
             <li>Must include title, names, problem, solution, visuals</li>
           </ul>
           <a href="https://konfhub.com/ai-summit" target="_blank" class="register-btn">REGISTER NOW</a>`;
-      }
-      else if (type === 'startup') {
-        content = `<h3 style="color:var(--primary);font-size:2.6rem;margin-bottom:1.5rem;">Startup Expo Guidelines</h3>
+      } else if (type === 'startup') {
+        content = `<h3 style="color:var(--primary);font-size:2.4rem;margin-bottom:1.5rem;">Startup Expo Guidelines</h3>
           <ul style="text-align:left;padding-left:2rem;font-size:1.1rem;line-height:2;">
             <li>Prototype / Model / PoC required</li>
             <li>10 min presentation + live demo</li>
@@ -516,7 +1097,6 @@
           </ul>
           <a href="https://konfhub.com/ai-summit" target="_blank" class="register-btn">REGISTER NOW</a>`;
       }
-
       // Evaluation & Judging
       else if (type === 'judging-committees') {
         content = `<h3 style="color:var(--primary);font-size:2.6rem;margin-bottom:2rem;">Judging Committees</h3>
@@ -555,89 +1135,6 @@
       modalBody.innerHTML = content;
       modal.style.display = 'block';
     }
-
-    function openCommitteeModal(cat) {
-      const committees = {
-        chief: `<h3 style="color:var(--primary);font-size:2.4rem;margin-bottom:2rem;">Chief Patrons & Leadership</h3>
-          <p style="font-size:1.2rem;line-height:2.2;text-align:left;">
-            <strong>Chief Patron</strong><br>Mr. Sardar Gagandeep Singh Kohli<br><em>Vice Chairman, Guru Nanak Institutions</em><br><br>
-            <strong>Patron</strong><br>Dr. H.S. Saini<br><em>Managing Director, GNI</em><br><br>
-            <strong>Chairman</strong><br>Dr. S. Sreenatha Reddy<br><em>Director, GNITC</em><br><br>
-            <strong>Co-Chairman</strong><br>Dr. Rishi Sayal<br><em>Associate Director, GNITC</em><br><br>
-            <strong>Steering Committee</strong><br>Dr. P. Parthasaradhy<br><em>Joint Director, GNITC</em><br>Dr. S. V. Ranganayakulu<br><em>R&D Dean, GNITC</em></p>`,
-
-        coord: `<h3 style="color:var(--primary);font-size:2.4rem;margin-bottom:2rem;">Event Coordinators</h3>
-          <p style="font-size:1.2rem;line-height:2.2;text-align:left;">
-            Dr. S. Madhu<br><em>HoD - CSM | CSO | AI&DS, GNITC<br><strong>Convenor</strong></em><br><br>
-            Dr. P. Pavan Kumar<br><em>Asst. Professor, AIML, GNITC</em><br><br>
-            Dr. A. Krishna<br><em>Asst. Professor, IoT, GNITC</em></p>`,
-
-        advisory: `<h3 style="color:var(--primary);font-size:2.4rem;margin-bottom:2rem;">Advisory Committee</h3>
-          <p style="font-size:1.15rem;line-height:2.2;text-align:left;">
-            Mrs. M. V. Anjana Devi<br><em>Assoc. Prof, AIML, GNITC</em><br><br>
-            Mr. A. Lakshmi Narayana<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mr. Suyash Agrawal<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mr. V. Kiranmai<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mr. B. Maria Joseph<br><em>Asst. Prof, AIML, GNITC</em></p>`,
-
-        organizing: `<h3 style="color:var(--primary);font-size:2.4rem;margin-bottom:2rem;">Organizing Committee</h3>
-          <p style="font-size:1.15rem;line-height:2.2;text-align:left;">
-            Mr. M. Kumar<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mr. Ch. Murali Krishna<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mrs. B. Surekha<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mr. Veeranjaneyulu<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mrs. P. Venkata Pratima<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mrs. Y. Shravani<br><em>Asst. Prof, AIML, GNITC</em></p>`,
-
-        technical: `<h3 style="color:var(--primary);font-size:2.4rem;margin-bottom:2rem;">Technical Committee</h3>
-          <p style="font-size:1.15rem;line-height:2.2;text-align:left;">
-            Mrs. Mary Teresa<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mr. Aadil Ahmad Dar<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mr. M. Reddi Durga Sree<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mrs. Aabida Farooq<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mrs. G. Swarnalatha<br><em>Asst. Prof, AI&DS, GNITC</em><br><br>
-            Mr. MD. Saleem Ahmed<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mr. Vinod<br><em>Asst. Prof, AI&DS, GNITC</em><br><br>
-            Mr. P. Shankar<br><em>Asst. Prof, AIML, GNITC</em></p>`,
-
-        disciplinary: `<h3 style="color:var(--primary);font-size:2.4rem;margin-bottom:2rem;">Disciplinary Committee</h3>
-          <p style="font-size:1.15rem;line-height:2.2;text-align:left;">
-            Mr. P. Samba Shiva Rao<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mr. V. Narsimha<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mr. P. Jangaiah<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mrs. Sk. Munnisa<br><em>Asst. Prof, AIML, GNITC</em><br><br>
-            Mr. Aravind<br><em>Asst. Prof, AIML, GNITC</em></p>`,
-
-        student: `<h3 style="color:var(--primary);font-size:2.4rem;margin-bottom:2rem;">Student Committee</h3>
-          <p style="font-size:1.15rem;line-height:2.2;text-align:left;">
-            Mr. Venkata Sai Likith<br><em>Student, AI&DS, GNITC</em><br><br>
-            Mr. Krishna Manohar<br><em>Student, IoT, GNITC</em><br><br>
-            Mr. Kevin Paul<br><em>Student, AIML, GNITC</em><br><br>
-            Mr. SP. Sheshank<br><em>Student, IoT, GNITC</em><br><br>
-            Ms. Harini<br><em>Student, AI&DS, GNITC</em><br><br>
-            Ms. Vasitha<br><em>Student, AIML, GNITC</em><br><br>
-            Mr. P. Siva Sai<br><em>Student, AIML, GNITC</em><br><br>
-            Mr. O. Nithish Kumar<br><em>Student, AIML, GNITC</em><br><br>
-            Ms. Siri Sathwika<br><em>Student, AIML, GNITC</em><br><br>
-            Mr. Harsha Vardhan<br><em>Student, IoT, GNITC</em></p>`
-      };
-
-      modalBody.innerHTML = committees[cat];
-      modal.style.display = 'block';
-    }
-
-    function closeModal() {
-      modal.style.display = 'none';
-    }
-
-    window.onclick = function(e) {
-      if (e.target === modal) closeModal();
-    }
-
-    document.querySelector('.hamburger').addEventListener('click', () => {
-      document.getElementById('navLinks').classList.toggle('active');
-    });
   </script>
 </body>
 </html>
-
