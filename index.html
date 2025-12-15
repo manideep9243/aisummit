@@ -484,6 +484,23 @@
       box-shadow: 0 25px 50px rgba(0,212,255,0.3);
     }
 
+    /* FORCE 2x2 GRID ONLY FOR EVALUATION SECTION */
+#evaluation .events-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  max-width: 1000px; /* keeps it visually balanced */
+  margin: 3rem auto;
+}
+
+/* Mobile – stack nicely */
+@media (max-width: 768px) {
+  #evaluation .events-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
  /* ZIG-ZAG TIMELINE */
     .zigzag-timeline {
       position: relative;
@@ -1287,6 +1304,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
 
 
