@@ -687,6 +687,87 @@
       transition: 0.4s;
     }
     .gallery img:hover { transform: scale(1.08); }
+
+    .gallery-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.gallery-track {
+  display: flex;
+  width: max-content;
+  animation: scrollGallery 35s linear infinite;
+}
+
+.gallery-track:hover {
+  animation-play-state: paused;
+}
+
+.gallery img {
+  height: 300px;
+  width: 450px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin: 0 15px;
+  cursor: pointer;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+  transition: transform 0.4s;
+}
+
+.gallery img:hover {
+  transform: scale(1.08);
+}
+
+@keyframes scrollGallery {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); } /* KEY FIX */
+}
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 4000;
+}
+
+.image-lightbox img {
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 18px;
+  box-shadow: 0 30px 90px rgba(0,0,0,0.9);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  font-size: 3.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 4rem;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+.lightbox-prev { left: 30px; }
+.lightbox-next { right: 30px; }
+
+.lightbox-prev:hover,
+.lightbox-next:hover,
+.lightbox-close:hover {
+  color: var(--primary);
+}
+
     
     /* Contact */
     .contact-section { padding: 130px 1.5rem; background: #1e293b; }
@@ -1350,9 +1431,69 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => sec.classList.add('visible'), i * 200);
   });
 });
+
+   const images = [
+  'gallery01.jpg',
+  'gallery02.jpg',
+  'gallery03.jpg',
+  'gallery04.jpg',
+  'gallery05.jpg',
+  'gallery06.jpg',
+  'gallery07.png',
+  'gallery08.jpeg',
+  'gallery09.jpeg'
+];
+
+let currentIndex = 0;
+const lightbox = document.getElementById('imageLightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+
+function openImage(index) {
+  currentIndex = index;
+  lightboxImg.src = images[currentIndex];
+  lightbox.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeImage() {
+  lightbox.style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+function nextImage() {
+  currentIndex = (currentIndex + 1) % images.length;
+  lightboxImg.src = images[currentIndex];
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  lightboxImg.src = images[currentIndex];
+}
+
+// Keyboard support
+document.addEventListener('keydown', e => {
+  if (!lightbox || lightbox.style.display !== 'flex') return;
+  if (e.key === 'ArrowRight') nextImage();
+  if (e.key === 'ArrowLeft') prevImage();
+  if (e.key === 'Escape') closeImage();
+});
+
+// Click outside to close
+lightbox.addEventListener('click', e => {
+  if (e.target === lightbox) closeImage();
+});
+
 </script>
+<div id="imageLightbox" class="image-lightbox">
+  <span class="lightbox-close" onclick="closeImage()">×</span>
+  <span class="lightbox-prev" onclick="prevImage()">❮</span>
+  <img id="lightboxImg">
+  <span class="lightbox-next" onclick="nextImage()">❯</span>
+</div>
+
 </body>
 </html>
+
 
 
 
