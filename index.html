@@ -457,8 +457,12 @@
       transition: 0.5s; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
     .sponsor-item:hover { transform: translateY(-15px); box-shadow: 0 20px 50px rgba(0,212,255,0.4); }
-    .sponsor-item img { height: 90px; filter: grayscale(100%); transition: 0.5s; }
-    .sponsor-item:hover img { filter: grayscale(0%); }
+   .sponsor-item img { 
+  height: 90px; 
+  transition: 0.5s; 
+  object-fit: contain;
+}
+
 
     /* Committee Grid */
   .committee-grid {
@@ -1508,6 +1512,7 @@ lightbox.addEventListener('click', e => {
 
 </body>
 </html>
+
 
 
 
