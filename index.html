@@ -802,6 +802,21 @@
       .hero h1 { font-size: 3.8rem; }
       .presents { font-size: 3.5rem; }
     }
+    /* Extension banner */
+    .extension-banner {
+      background: linear-gradient(135deg, #ff4757, #e84118);
+      color: white;
+      padding: 1.4rem 3rem;
+      margin: 2rem auto;
+      max-width: 90%;
+      border-radius: 60px;
+      box-shadow: 0 12px 35px rgba(255,71,87,0.55);
+      border: 4px solid white;
+      font-weight: bold;
+      font-size: 1.55rem;
+      line-height: 1.4;
+      animation: pulse 2.1s infinite ease-in-out;
+    }
   </style>
 </head>
 <body>
@@ -849,20 +864,18 @@
 
   <!-- Hero Section with Unique Prize Badge -->
 <section id="home" class="hero">
-<!-- Unique Shape Prize Badge – NOW 100% MOBILE SAFE -->
-<!-- <div class="prize-badge">
-  <span class="prize-text">
-    Prize Pool<br>
-    <strong>₹1,00,000</strong>
-  </span>
-</div> -->
-
+  
   <div class="dept-line">DEPARTMENT OF AIML | AI&DS | IoT</div>
   <div class="presents">presents</div>
   <h1>AI SUMMIT 2026</h1>
   <div class="date">20 – 21 February 2026</div>
   <div class="venue">Guru Nanak Institutions Technical Campus, Hyderabad</div>
-
+  <!-- Registration Extension Banner -->
+    <div class="extension-banner">
+      <strong>REGISTRATIONS EXTENDED!</strong><br>
+      Now open till <span class="highlight-date">15 February 2026</span><br>
+      <small>Limited spots – register before it's too late!</small>
+    </div>
   <!-- Registration Open Popup Button -->
   <div class="reg-popup" onclick="window.open('https://konfhub.com/ai-summit', '_blank')">
     REGISTRATIONS ARE OPEN!
@@ -1512,6 +1525,7 @@ lightbox.addEventListener('click', e => {
 
 </body>
 </html>
+
 
 
 
